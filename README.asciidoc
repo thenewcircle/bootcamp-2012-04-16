@@ -1,0 +1,24 @@
+= Android Boot Camp Training
+
+16 Aprile 2012
+
+*Ken Jones*, +<ken@marakana.com>+
+http://marakana.com[Marakana, Inc.]
+
+== Obtaining Course Materials
+
+You can either clone this Git repository:
+
+	git clone git://github.com/marakana/bootcamp-2012-04-16.git
+
+or download a Zip archive by clicking the link above.
+
+== Useful Links
+
+Android blogs that Ken follows in http://marakana.com/external/slasscom/android-blogs.opml[OPML format]
+
+_Professional Android 2 Application Development_, by Reto Meier: http://www.wrox.com/WileyCDA/WroxTitle/Professional-Android-Application-Development.productCd-0470565527.html
+
+Generating app icons: http://android-ui-utils.googlecode.com/hg/asset-studio/dist/index.html[Android Asset Studio]
+
+Encrypting preference items: http://stackoverflow.com/questions/5858790/process-the-value-of-preference-before-save-in-android

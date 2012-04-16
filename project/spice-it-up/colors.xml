@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<color name="defaultText">#fff</color>
+	<color name="title">@color/defaultText</color>
+	<color name="editText">@color/defaultText</color>
+	<color name="editTextBackground">#6009</color>
+</resources>

@@ -1,6 +1,6 @@
 = Android Boot Camp Training
 
-16 Aprile 2012
+16 April 2012
 
 *Ken Jones*, +<ken@marakana.com>+
 http://marakana.com[Marakana, Inc.]

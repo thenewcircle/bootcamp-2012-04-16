@@ -15,6 +15,8 @@ or download a Zip archive by clicking the link above.
 
 == Useful Links
 
+http://www.cyanogenmod.com[CyanogenMod], an alternate system image based on the Android Open Source Project
+
 Android blogs that Ken follows in http://marakana.com/external/slasscom/android-blogs.opml[OPML format]
 
 _Professional Android 2 Application Development_, by Reto Meier: http://www.wrox.com/WileyCDA/WroxTitle/Professional-Android-Application-Development.productCd-0470565527.html

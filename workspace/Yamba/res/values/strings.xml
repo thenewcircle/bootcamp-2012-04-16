@@ -17,5 +17,7 @@
     <string name="pref_site_url_summary">The URL to access your microblogging site</string>
     <string name="menu_preference_title">Settings</string>
     <string name="menu_preference_title_cond">Settings</string>
+    <string name="menu_refresh_title">Refresh</string>
+    <string name="menu_refresh_title_cond">Refresh</string>
 
 </resources>

@@ -25,11 +25,17 @@ public class MainActivity extends FragmentActivity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		int id = item.getItemId();
+		Intent intent;
 		switch (id) {
 		case R.id.menu_preference:
 			// Display the preference activity
-			Intent intent = new Intent(this, PrefsActivity.class);
+			intent = new Intent(this, PrefsActivity.class);
 			startActivity(intent);
+			return true;
+		case R.id.menu_refresh:
+			// Start the UpdaterService
+			intent = new Intent(this, UpdaterService.class);
+			startService(intent);
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);

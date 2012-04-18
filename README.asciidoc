@@ -24,3 +24,10 @@ _Professional Android 2 Application Development_, by Reto Meier: http://www.wrox
 Generating app icons: http://android-ui-utils.googlecode.com/hg/asset-studio/dist/index.html[Android Asset Studio]
 
 Encrypting preference items: http://stackoverflow.com/questions/5858790/process-the-value-of-preference-before-save-in-android
+
+== Course Survey
+
+IMPORTANT: Please complete the Marakana class survey at: http://marakana.com/survey
+
+Thanks!
+

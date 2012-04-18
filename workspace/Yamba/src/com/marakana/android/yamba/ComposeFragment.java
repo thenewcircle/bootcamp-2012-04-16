@@ -1,6 +1,5 @@
 package com.marakana.android.yamba;
 
-import winterwell.jtwitter.Twitter;
 import winterwell.jtwitter.TwitterException;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -9,8 +8,8 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -20,18 +19,12 @@ public class ComposeFragment extends Fragment implements OnClickListener {
 	
 	private EditText mEditMsg;
 	private Toast mToast;
-
-	private Twitter mTwitter;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
 		setRetainInstance(true);
-		
-        // Initialize the Twitter object
-        mTwitter = new Twitter("student", "password");
-        mTwitter.setAPIRootUrl("http://yamba.marakana.com/api");
 	}
 
 	@Override
@@ -78,7 +71,7 @@ public class ComposeFragment extends Fragment implements OnClickListener {
 			int result = R.string.post_status_success;
 			
 			try {
-				mTwitter.setStatus(args[0]);
+				YambaApplication.getInstance().getTwitter().setStatus(args[0]);
 			} catch (TwitterException e) {
 				Log.e(TAG, "Failed to post message", e);
 				result = R.string.post_status_fail;

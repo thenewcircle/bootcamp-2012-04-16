@@ -8,5 +8,14 @@
     <string name="edit_msg_hint">Please enter a status update of 140 characters or less</string>
     <string name="post_status_success">Posted message successfully</string>
     <string name="post_status_fail">Failed to post message</string>
+    <string name="pref_user_key">PREF_USER</string>
+    <string name="pref_user_title">User Name</string>
+    <string name="pref_password_key">PREF_PASSWORD</string>
+    <string name="pref_password_title">Password</string>
+    <string name="pref_site_url_key">PREF_SITE_URL</string>
+    <string name="pref_site_url_title">Site URL</string>
+    <string name="pref_site_url_summary">The URL to access your microblogging site</string>
+    <string name="menu_preference_title">Settings</string>
+    <string name="menu_preference_title_cond">Settings</string>
 
 </resources>

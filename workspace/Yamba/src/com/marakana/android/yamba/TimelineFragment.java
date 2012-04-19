@@ -1,11 +1,15 @@
 package com.marakana.android.yamba;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.support.v4.widget.SimpleCursorAdapter.ViewBinder;
 import android.text.format.DateUtils;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -27,6 +31,9 @@ public class TimelineFragment extends ListFragment implements ViewBinder {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		setHasOptionsMenu(true);
+		
 		mCursor = YambaApplication.getInstance().getDb()
 					.query(TimelineHelper.T_TIMELINE,
 							null, null, null, null, null,
@@ -35,6 +42,25 @@ public class TimelineFragment extends ListFragment implements ViewBinder {
 							R.layout.timeline_row, mCursor, FROM, TO, 0);
 		mAdapter.setViewBinder(this);
 		setListAdapter(mAdapter);
+	}
+
+	@Override
+	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+		inflater.inflate(R.menu.options_timeline_fragment, menu);
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		int id = item.getItemId();
+		switch (id) {
+		case R.id.menu_refresh:
+			// Start the UpdaterService to refresh the timeline
+			Intent intent = new Intent(getActivity(), UpdaterService.class);
+			getActivity().startService(intent);
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
+		}
 	}
 
 	@Override

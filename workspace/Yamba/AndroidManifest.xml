@@ -23,7 +23,6 @@
         <activity android:name="PrefsActivity" >
         </activity>
         <service android:name="UpdaterService"></service>
-        <activity android:name="TimelineActivity"></activity>
     </application>
 
 </manifest>

@@ -9,13 +9,6 @@
         android:titleCondensed="@string/menu_preference_title_cond">
     </item>
     <item
-        android:id="@+id/menu_refresh"
-        android:icon="@drawable/menu_refresh"
-        android:showAsAction="ifRoom|withText"
-        android:title="@string/menu_refresh_title"
-        android:titleCondensed="@string/menu_refresh_title_cond">
-    </item>
-    <item
         android:id="@+id/menu_timeline"
         android:icon="@drawable/menu_timeline"
         android:showAsAction="ifRoom|withText"
@@ -26,7 +19,7 @@
         android:id="@+id/menu_compose"
         android:icon="@android:drawable/ic_menu_edit"
         android:title="@string/menu_compose_title"
-        android:titleCondensed="@string/menu_compose_title_cond">
+        android:titleCondensed="@string/menu_compose_title_cond" android:showAsAction="ifRoom|withText">
     </item>
 
 </menu>

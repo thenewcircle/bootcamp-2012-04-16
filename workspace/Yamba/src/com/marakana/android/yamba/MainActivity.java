@@ -10,8 +10,10 @@ import android.view.MenuItem;
 public class MainActivity extends FragmentActivity {
 	private FragmentManager mFragmentManager;
 	private ComposeFragment mComposeFragment;
+	private TimelineFragment mTimelineFragment;
 	
 	private static final String COMPOSE_TAG = "compose_fragment";
+	private static final String TIMELINE_TAG = "timeline_fragment";
 	
     /** Called when the activity is first created. */
     @Override
@@ -24,12 +26,16 @@ public class MainActivity extends FragmentActivity {
         if (savedInstanceState == null) {
         	// Initialize our fragments
         	mComposeFragment = new ComposeFragment();
+        	mTimelineFragment = new TimelineFragment();
         	mFragmentManager.beginTransaction()
         		.add(R.id.fragment_container, mComposeFragment, COMPOSE_TAG)
+        		.hide(mComposeFragment)
+        		.add(R.id.fragment_container, mTimelineFragment, TIMELINE_TAG)
         		.commit();
         }
         else {
         	mComposeFragment = (ComposeFragment) mFragmentManager.findFragmentByTag(COMPOSE_TAG);
+        	mTimelineFragment = (TimelineFragment) mFragmentManager.findFragmentByTag(TIMELINE_TAG);
         }
     }
 

@@ -1,8 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
-    <item android:id="@+id/menu_preference" android:title="@string/menu_preference_title" android:titleCondensed="@string/menu_preference_title_cond" android:icon="@android:drawable/ic_menu_preferences" android:showAsAction="ifRoom|withText"></item>
-    <item android:id="@+id/menu_refresh" android:titleCondensed="@string/menu_refresh_title_cond" android:title="@string/menu_refresh_title" android:icon="@drawable/menu_refresh" android:showAsAction="ifRoom|withText"></item>
-    <item android:id="@+id/menu_timeline" android:icon="@drawable/menu_timeline" android:title="@string/menu_timeline_title" android:titleCondensed="@string/menu_timeline_title_cond" android:showAsAction="ifRoom|withText"></item>
-    
+
+    <item
+        android:id="@+id/menu_preference"
+        android:icon="@android:drawable/ic_menu_preferences"
+        android:showAsAction="ifRoom|withText"
+        android:title="@string/menu_preference_title"
+        android:titleCondensed="@string/menu_preference_title_cond">
+    </item>
+    <item
+        android:id="@+id/menu_refresh"
+        android:icon="@drawable/menu_refresh"
+        android:showAsAction="ifRoom|withText"
+        android:title="@string/menu_refresh_title"
+        android:titleCondensed="@string/menu_refresh_title_cond">
+    </item>
+    <item
+        android:id="@+id/menu_timeline"
+        android:icon="@drawable/menu_timeline"
+        android:showAsAction="ifRoom|withText"
+        android:title="@string/menu_timeline_title"
+        android:titleCondensed="@string/menu_timeline_title_cond">
+    </item>
+    <item
+        android:id="@+id/menu_compose"
+        android:icon="@android:drawable/ic_menu_edit"
+        android:title="@string/menu_compose_title"
+        android:titleCondensed="@string/menu_compose_title_cond">
+    </item>
 
 </menu>

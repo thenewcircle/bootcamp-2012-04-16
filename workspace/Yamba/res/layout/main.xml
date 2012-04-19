@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fragment_container"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical" android:padding="5dp">
+    android:orientation="vertical"
+    android:padding="5dp" >
 
     <TextView
         style="@style/activity_title"
@@ -10,12 +12,5 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:text="@string/activity_main_title" android:layout_marginBottom="5dp"/>
-
-    <fragment
-        android:name="com.marakana.android.yamba.ComposeFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" >
-        <!-- Preview: layout=@layout/compose_fragment -->
-    </fragment>
 
 </LinearLayout>

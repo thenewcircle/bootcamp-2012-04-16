@@ -3,16 +3,34 @@ package com.marakana.android.yamba;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.view.Menu;
 import android.view.MenuItem;
 
 public class MainActivity extends FragmentActivity {
+	private FragmentManager mFragmentManager;
+	private ComposeFragment mComposeFragment;
+	
+	private static final String COMPOSE_TAG = "compose_fragment";
 	
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        
+        mFragmentManager = getSupportFragmentManager();
+        
+        if (savedInstanceState == null) {
+        	// Initialize our fragments
+        	mComposeFragment = new ComposeFragment();
+        	mFragmentManager.beginTransaction()
+        		.add(R.id.fragment_container, mComposeFragment, COMPOSE_TAG)
+        		.commit();
+        }
+        else {
+        	mComposeFragment = (ComposeFragment) mFragmentManager.findFragmentByTag(COMPOSE_TAG);
+        }
     }
 
 	@Override

@@ -37,6 +37,11 @@ public class MainActivity extends FragmentActivity {
 			intent = new Intent(this, UpdaterService.class);
 			startService(intent);
 			return true;
+		case R.id.menu_timeline:
+			// Start the TimelineActivity
+			intent = new Intent(this, TimelineActivity.class);
+			startActivity(intent);
+			return true;
 		default:
 			return super.onOptionsItemSelected(item);
 		}

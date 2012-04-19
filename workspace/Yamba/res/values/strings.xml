@@ -19,5 +19,7 @@
     <string name="menu_preference_title_cond">Settings</string>
     <string name="menu_refresh_title">Refresh</string>
     <string name="menu_refresh_title_cond">Refresh</string>
+    <string name="menu_timeline_title">Show Home Timeline</string>
+    <string name="menu_timeline_title_cond">Timeline</string>
 
 </resources>

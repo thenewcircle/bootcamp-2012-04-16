@@ -22,7 +22,13 @@ public class UpdaterService extends IntentService {
 		Log.v(TAG, "onHandleIntent() invoked");
 		
 		try {
-			List<Twitter.Status> timeline = YambaApplication.getInstance().getTwitter().getHomeTimeline();
+			List<Twitter.Status> timeline;
+			try {
+				timeline = YambaApplication.getInstance().getTwitter().getHomeTimeline();
+			} catch (NullPointerException e) {
+				// Work around bug in JTwitter library
+				return;
+			}
 			ContentValues values = new ContentValues();
 			for (Twitter.Status status: timeline) {
 				String name = status.user.name;
@@ -32,12 +38,12 @@ public class UpdaterService extends IntentService {
 				Log.v(TAG, id + ": " + name + " posted at " + createdAt + ": " + msg);
 				
 				values.clear();
-				values.put(TimelineHelper.KEY_ID, id);
-				values.put(TimelineHelper.KEY_USER, name);
-				values.put(TimelineHelper.KEY_MESSAGE, msg);
-				values.put(TimelineHelper.KEY_CREATED_AT, createdAt.getTime());
+				values.put(StatusContract.Columns._ID, id);
+				values.put(StatusContract.Columns.USER, name);
+				values.put(StatusContract.Columns.MESSAGE, msg);
+				values.put(StatusContract.Columns.CREATED_AT, createdAt.getTime());
 				
-				YambaApplication.getInstance().getDb().insert(TimelineHelper.T_TIMELINE, null, values);
+				getContentResolver().insert(StatusContract.CONTENT_URI, values);
 			}
 		} catch (TwitterException e) {
 			Log.w(TAG, "Failed to retrieve timeline data");

@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.support.v4.widget.SimpleCursorAdapter.ViewBinder;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
 import android.text.format.DateUtils;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -13,14 +16,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-public class TimelineFragment extends ListFragment implements ViewBinder {
-	private Cursor mCursor;
+public class TimelineFragment extends ListFragment implements ViewBinder, 
+		LoaderManager.LoaderCallbacks<Cursor> {
 	private SimpleCursorAdapter mAdapter;
 	
 	private static final String[] FROM = {
-		TimelineHelper.KEY_USER,
-		TimelineHelper.KEY_MESSAGE,
-		TimelineHelper.KEY_CREATED_AT
+		StatusContract.Columns.USER,
+		StatusContract.Columns.MESSAGE,
+		StatusContract.Columns.CREATED_AT
 	};
 	private static final int[] TO = {
 		R.id.status_data_user,
@@ -34,14 +37,16 @@ public class TimelineFragment extends ListFragment implements ViewBinder {
 		
 		setHasOptionsMenu(true);
 		
-		mCursor = YambaApplication.getInstance().getDb()
-					.query(TimelineHelper.T_TIMELINE,
-							null, null, null, null, null,
-							TimelineHelper.KEY_CREATED_AT + " desc");
 		mAdapter = new SimpleCursorAdapter(getActivity().getApplicationContext(),
-							R.layout.timeline_row, mCursor, FROM, TO, 0);
+							R.layout.timeline_row, null, FROM, TO, 0);
 		mAdapter.setViewBinder(this);
 		setListAdapter(mAdapter);
+	}
+
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState) {
+		super.onActivityCreated(savedInstanceState);
+		getLoaderManager().initLoader(0, null, this);
 	}
 
 	@Override
@@ -64,24 +69,6 @@ public class TimelineFragment extends ListFragment implements ViewBinder {
 	}
 
 	@Override
-	public void onResume() {
-		super.onResume();
-		mCursor.requery();
-	}
-
-	@Override
-	public void onPause() {
-		super.onPause();
-		mCursor.deactivate();
-	}
-
-	@Override
-	public void onDestroy() {
-		super.onDestroy();
-		mCursor.close();
-	}
-
-	@Override
 	public boolean setViewValue(View v, Cursor cursor, int columnIndex) {
 		int id = v.getId();
 		switch (id) {
@@ -96,6 +83,23 @@ public class TimelineFragment extends ListFragment implements ViewBinder {
 			// Let the SimpleCursorAdapter perform the default binding of data
 			return false;
 		}
+	}
+
+	@Override
+	public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+		return new CursorLoader(getActivity().getApplicationContext(),
+						StatusContract.CONTENT_URI, null, null, null, null);
+	}
+
+	@Override
+	public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
+		mAdapter.swapCursor(cursor);
+		mAdapter.notifyDataSetChanged();
+	}
+
+	@Override
+	public void onLoaderReset(Loader<Cursor> loader) {
+		mAdapter.swapCursor(null);
 	}
 
 }

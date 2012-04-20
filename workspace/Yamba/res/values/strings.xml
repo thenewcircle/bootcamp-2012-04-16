@@ -23,5 +23,7 @@
     <string name="menu_timeline_title_cond">Timeline</string>
     <string name="menu_compose_title">New Status</string>
     <string name="menu_compose_title_cond">New Status</string>
+    <string name="perm_new_status_label">Receive new Yamba status notification</string>
+    <string name="perm_new_status_description">Receive notifications that Yamba has downloaded new timeline information</string>
 
 </resources>

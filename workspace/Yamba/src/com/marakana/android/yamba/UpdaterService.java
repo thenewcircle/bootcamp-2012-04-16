@@ -8,6 +8,7 @@ import winterwell.jtwitter.TwitterException;
 import android.app.IntentService;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 
 public class UpdaterService extends IntentService {
@@ -21,6 +22,7 @@ public class UpdaterService extends IntentService {
 	protected void onHandleIntent(Intent arg0) {
 		Log.v(TAG, "onHandleIntent() invoked");
 		
+		int count = 0;
 		try {
 			List<Twitter.Status> timeline;
 			try {
@@ -43,11 +45,23 @@ public class UpdaterService extends IntentService {
 				values.put(StatusContract.Columns.MESSAGE, msg);
 				values.put(StatusContract.Columns.CREATED_AT, createdAt.getTime());
 				
-				getContentResolver().insert(StatusContract.CONTENT_URI, values);
+				Uri ret = getContentResolver().insert(StatusContract.CONTENT_URI, values);
+				if (ret != null) {
+					count++;
+				}
 			}
 		} catch (TwitterException e) {
 			Log.w(TAG, "Failed to retrieve timeline data");
 		}
+		if (count > 0) {
+			notifyNewStatus(count);
+		}
+	}
+	
+	private void notifyNewStatus(int count) {
+		Intent broadcast = new Intent(YambaApplication.ACTION_NEW_STATUS);
+		broadcast.putExtra(YambaApplication.EXTRA_NEW_STATUS_COUNT, count);
+		sendBroadcast(broadcast, YambaApplication.PERM_NEW_STATUS);
 	}
 
 }

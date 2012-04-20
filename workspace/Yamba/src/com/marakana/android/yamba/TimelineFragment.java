@@ -1,14 +1,17 @@
 package com.marakana.android.yamba;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
-import android.support.v4.widget.SimpleCursorAdapter;
-import android.support.v4.widget.SimpleCursorAdapter.ViewBinder;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
+import android.support.v4.widget.SimpleCursorAdapter;
+import android.support.v4.widget.SimpleCursorAdapter.ViewBinder;
 import android.text.format.DateUtils;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -19,6 +22,8 @@ import android.widget.TextView;
 public class TimelineFragment extends ListFragment implements ViewBinder, 
 		LoaderManager.LoaderCallbacks<Cursor> {
 	private SimpleCursorAdapter mAdapter;
+	private TimelineReceiver mReceiver;
+	private IntentFilter mFilter;
 	
 	private static final String[] FROM = {
 		StatusContract.Columns.USER,
@@ -41,6 +46,9 @@ public class TimelineFragment extends ListFragment implements ViewBinder,
 							R.layout.timeline_row, null, FROM, TO, 0);
 		mAdapter.setViewBinder(this);
 		setListAdapter(mAdapter);
+		
+		mReceiver = new TimelineReceiver();
+		mFilter = new IntentFilter(YambaApplication.ACTION_NEW_STATUS);
 	}
 
 	@Override
@@ -49,6 +57,18 @@ public class TimelineFragment extends ListFragment implements ViewBinder,
 		getLoaderManager().initLoader(0, null, this);
 	}
 
+	@Override
+	public void onResume() {
+		super.onResume();
+		getActivity().registerReceiver(mReceiver, mFilter, YambaApplication.PERM_NEW_STATUS, null);
+	}
+
+	@Override
+	public void onPause() {
+		super.onPause();
+		getActivity().unregisterReceiver(mReceiver);
+	}
+	
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 		inflater.inflate(R.menu.options_timeline_fragment, menu);
@@ -100,6 +120,15 @@ public class TimelineFragment extends ListFragment implements ViewBinder,
 	@Override
 	public void onLoaderReset(Loader<Cursor> loader) {
 		mAdapter.swapCursor(null);
+	}
+	
+	private class TimelineReceiver extends BroadcastReceiver {
+
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			getLoaderManager().restartLoader(0, null, TimelineFragment.this);
+		}
+		
 	}
 
 }

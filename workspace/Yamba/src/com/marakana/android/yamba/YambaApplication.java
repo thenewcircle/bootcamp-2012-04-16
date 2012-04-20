@@ -13,6 +13,7 @@ public class YambaApplication extends Application implements OnSharedPreferenceC
 	public static final String ACTION_NEW_STATUS = "com.marakana.android.yamba.ACTION_NEW_STATUS";
 	public static final String EXTRA_NEW_STATUS_COUNT = "EXTRA_NEW_STATUS_COUNT";
 	public static final String PERM_NEW_STATUS = "com.marakana.android.yamba.permission.NEW_STATUS";
+	public static final int NEW_STATUS_NOTIFICATION = 1;
 	
 	private SharedPreferences prefs;
 	private String prefUserKey;

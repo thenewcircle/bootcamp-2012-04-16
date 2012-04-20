@@ -25,5 +25,7 @@
     <string name="menu_compose_title_cond">New Status</string>
     <string name="perm_new_status_label">Receive new Yamba status notification</string>
     <string name="perm_new_status_description">Receive notifications that Yamba has downloaded new timeline information</string>
+    <string name="notify_new_status_ticker">New Yamba message</string>
+    <string name="notify_new_status_content_text">You have unread messages in Yamba</string>
 
 </resources>

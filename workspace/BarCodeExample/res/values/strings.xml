@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, ScanActivity!</string>
+    <string name="app_name">BarCodeExample</string>
+    <string name="activity_scanner_title">Bar Code Scanning</string>
+    <string name="button_scan_text">Scan Bar Code</string>
+    <string name="text_format_label">Format:</string>
+    <string name="text_content_label">Content:</string>
+    <string name="text_scan_no_data">No scan data</string>
+    <string name="scan_unrecognized">Bar code not recognized</string>
+    <string name="scanner_not_installed">Bar code scanner not installed</string>
+</resources>

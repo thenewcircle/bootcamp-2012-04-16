@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:padding="5dp">
+<TextView  
+    android:layout_width="fill_parent" 
+    android:layout_height="wrap_content" android:text="@string/activity_scanner_title" android:textSize="30sp" android:gravity="center_horizontal" android:layout_marginBottom="10dp"/>
+<Button android:text="@string/button_scan_text" android:layout_height="wrap_content" android:layout_width="match_parent" android:id="@+id/button_scan"></Button>
+<TextView android:id="@+id/textView1" android:layout_height="wrap_content" android:layout_width="wrap_content" android:textAppearance="?android:attr/textAppearanceLarge" android:text="@string/text_format_label" android:layout_marginTop="10dp"></TextView>
+<TextView android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceMedium" android:id="@+id/text_format" android:layout_width="match_parent" android:text="@string/text_scan_no_data"></TextView>
+<TextView android:id="@+id/textView3" android:layout_height="wrap_content" android:layout_width="wrap_content" android:textAppearance="?android:attr/textAppearanceLarge" android:text="@string/text_content_label" android:layout_marginTop="10dp"></TextView>
+<TextView android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceMedium" android:id="@+id/text_content" android:layout_width="match_parent" android:text="@string/text_scan_no_data"></TextView>
+</LinearLayout>

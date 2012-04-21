@@ -1,5 +1,6 @@
 package com.marakana.android.yamba;
 
+import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -24,6 +25,7 @@ public class TimelineFragment extends ListFragment implements ViewBinder,
 	private SimpleCursorAdapter mAdapter;
 	private TimelineReceiver mReceiver;
 	private IntentFilter mFilter;
+	private NotificationManager mNotificationManager;
 	
 	private static final String[] FROM = {
 		StatusContract.Columns.USER,
@@ -49,6 +51,8 @@ public class TimelineFragment extends ListFragment implements ViewBinder,
 		
 		mReceiver = new TimelineReceiver();
 		mFilter = new IntentFilter(YambaApplication.ACTION_NEW_STATUS);
+		
+		mNotificationManager = (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
 	}
 
 	@Override
@@ -61,6 +65,7 @@ public class TimelineFragment extends ListFragment implements ViewBinder,
 	public void onResume() {
 		super.onResume();
 		getActivity().registerReceiver(mReceiver, mFilter, YambaApplication.PERM_NEW_STATUS, null);
+		// mNotificationManager.cancel(YambaApplication.NEW_STATUS_NOTIFICATION);
 	}
 
 	@Override
@@ -127,6 +132,7 @@ public class TimelineFragment extends ListFragment implements ViewBinder,
 		@Override
 		public void onReceive(Context context, Intent intent) {
 			getLoaderManager().restartLoader(0, null, TimelineFragment.this);
+			mNotificationManager.cancel(YambaApplication.NEW_STATUS_NOTIFICATION);
 		}
 		
 	}

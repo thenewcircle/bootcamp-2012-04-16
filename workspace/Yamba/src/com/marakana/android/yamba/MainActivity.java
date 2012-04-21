@@ -116,6 +116,7 @@ public class MainActivity extends FragmentActivity {
 				.commit();
 			break;
 		default:
+			// Assume that we should show the TimelineFragment
 			mFragmentManager.beginTransaction()
 				.hide(mComposeFragment)
 				.show(mTimelineFragment)
